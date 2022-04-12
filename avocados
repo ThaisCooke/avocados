@@ -1,0 +1,38 @@
+SELECT TOP (1000) [F1]
+      ,[Date]
+      ,[AveragePrice]
+      ,[Total Volume]
+      ,[4046]
+      ,[4225]
+      ,[4770]
+      ,[Total Bags]
+      ,[Small Bags]
+      ,[Large Bags]
+      ,[XLarge Bags]
+      ,[type]
+      ,[year]
+      ,[region]
+  FROM [avocados].[dbo].[avocado]
+
+-- CALCULATING NUMBER OF AVOCADOS PER REGION
+
+SELECT
+Date,
+Region,
+[Small Bags],
+[Large Bags],
+[XLarge Bags],
+([Small bags] + [Large Bags] + [XLarge Bags]) AS Total_bags_Calc
+FROM dbo.avocado
+
+
+-- PERCENTAGE OF SMALL BAGS (THIS CALCULATION WAS GIVING AN ERROR, WHERE THE RESULTS COULDN'T BE DIVIDED BY 0)
+
+SELECT 
+Date,
+Region,
+[Total Bags],
+[Small Bags],
+([small bags] / [total bags]) * 100 AS small_bag_percent
+FROM dbo.avocado
+WHERE [total bags] <> 0
